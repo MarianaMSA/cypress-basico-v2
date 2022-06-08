@@ -102,7 +102,19 @@ describe("Central de Atendimento ao Cliente TAT", function () {
     cy.selectAProductMentoria();
   });
 
-  it.only("testando select 'Blog'", () => {
+  it("testando select 'Blog'", () => {
     cy.selectAProductBlog();
+  });
+
+  it("selecionando o radio 'Feedback'", () => {
+    cy.selectARadioFeedback();
+  });
+
+  it("seleciona um radio por vez", () => {
+    cy.selectAllRadios();
+  });
+
+  it.only("marcando Todos com a msm comando", () => {
+    cy.allRadio();
   });
 });

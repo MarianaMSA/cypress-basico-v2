@@ -42,3 +42,24 @@ Cypress.Commands.add("selectAProductMentoria", () => {
 Cypress.Commands.add("selectAProductBlog", () => {
   cy.get("#product").select(1).should("have.value", "blog");
 });
+
+Cypress.Commands.add("selectARadioFeedback", () => {
+  cy.get("input[type='radio'][value='feedback']")
+    .check()
+    .should("have.value", "feedback");
+});
+
+Cypress.Commands.add("selectAllRadios", () => {
+  cy.get("input[type='radio'][value='ajuda']").check().should("be.checked");
+  cy.get("input[type='radio'][value='elogio']").check().should("be.checked");
+  cy.get("input[type='radio'][value='feedback']").check().should("be.checked");
+});
+
+Cypress.Commands.add("allRadio", () => {
+  cy.get("input[type='radio']")
+    .should("have.length", 3)
+    .each(($radio) => {
+      cy.wrap($radio).check();
+      cy.wrap($radio).should("be.checked");
+    });
+});
