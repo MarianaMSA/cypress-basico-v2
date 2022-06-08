@@ -25,3 +25,20 @@ Cypress.Commands.add("fillMandatoryFieldsAndSubmitContains", () => {
   });
   cy.contains("button", "Enviar").click();
 });
+
+Cypress.Commands.add("selectAProductYoutube", () => {
+  cy.get("#firstName").type("Ana");
+  cy.get("#lastName").type("Assis");
+  cy.get("#email").type("ana@ana.com.br");
+  cy.get("#product").select("YouTube").should("have.value", "youtube");
+  cy.get("#open-text-area").type("Teste");
+  cy.contains("button", "Enviar").click();
+});
+
+Cypress.Commands.add("selectAProductMentoria", () => {
+  cy.get("#product").select("mentoria").should("have.value", "mentoria");
+});
+
+Cypress.Commands.add("selectAProductBlog", () => {
+  cy.get("#product").select(1).should("have.value", "blog");
+});
