@@ -63,3 +63,12 @@ Cypress.Commands.add("allRadio", () => {
       cy.wrap($radio).should("be.checked");
     });
 });
+
+Cypress.Commands.add("checkBothCheckboxesThenUncheckTheLastOne", () => {
+  cy.get("input[type='checkbox']")
+    .check()
+    .should("be.checked")
+    .last()
+    .uncheck()
+    .should("not.be.checked");
+});
