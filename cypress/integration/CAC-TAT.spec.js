@@ -28,9 +28,9 @@ describe("Central de Atendimento ao Cliente TAT", function () {
   });
 
   it("exibe mensagem de erro ao inserir emaiil com formatação invalida", () => {
-    cy.get("#firstName").type("Ana");
-    cy.get("#lastName").type("Maria da Silva");
-    cy.get("#email").type("ana@.com");
+    cy.get("#firstName").type("Ana", { delay: 0 });
+    cy.get("#lastName").type("Maria da Silva", { delay: 0 });
+    cy.get("#email").type("ana@.com", { delay: 0 });
     cy.get("#open-text-area").type("Teste");
     cy.get("button[type='submit']").click();
     cy.get(".error").should("be.visible");
@@ -40,10 +40,10 @@ describe("Central de Atendimento ao Cliente TAT", function () {
     cy.get("#phone").type("Aninha").should("have.value", "");
   });
 
-  it.only("exibe mensagem de erro quando o telefone se torna obrigatório mas não é preenchido antes do envio do formulário", function () {
-    cy.get("#firstName").type("Ana");
-    cy.get("#lastName").type("Maria da Silva");
-    cy.get("#email").type("ana@exemplo.com");
+  it("exibe mensagem de erro quando o telefone se torna obrigatório mas não é preenchido antes do envio do formulário", function () {
+    cy.get("#firstName").type("Ana", { delay: 0 });
+    cy.get("#lastName").type("Maria da Silva", { delay: 0 });
+    cy.get("#email").type("ana@exemplo.com", { delay: 0 });
     cy.get("#phone-checkbox").check();
     cy.get("#open-text-area").type("Teste");
     cy.get("button[type='submit']").click();
@@ -52,12 +52,12 @@ describe("Central de Atendimento ao Cliente TAT", function () {
 
   it("preenche e limpa os campos nome, sobrenome, email e telefone", function () {
     cy.get("#firstName")
-      .type("Ana")
+      .type("Ana", { delay: 0 })
       .should("have.value", "Ana")
       .clear()
       .should("have.value", "");
     cy.get("#lastName")
-      .type("Maria da Silva")
+      .type("Maria da Silva", { delay: 0 })
       .should("have.value", "Maria da Silva");
     cy.get("#lastName").clear().should("have.value", "");
     cy.get("#email")

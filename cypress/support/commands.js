@@ -27,9 +27,9 @@ Cypress.Commands.add("fillMandatoryFieldsAndSubmitContains", () => {
 });
 
 Cypress.Commands.add("selectAProductYoutube", () => {
-  cy.get("#firstName").type("Ana");
-  cy.get("#lastName").type("Assis");
-  cy.get("#email").type("ana@ana.com.br");
+  cy.get("#firstName").type("Ana", { delay: 0 });
+  cy.get("#lastName").type("Assis", { delay: 0 });
+  cy.get("#email").type("ana@ana.com.br", { delay: 0 });
   cy.get("#product").select("YouTube").should("have.value", "youtube");
   cy.get("#open-text-area").type("Teste");
   cy.contains("button", "Enviar").click();
