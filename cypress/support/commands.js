@@ -72,3 +72,12 @@ Cypress.Commands.add("checkBothCheckboxesThenUncheckTheLastOne", () => {
     .uncheck()
     .should("not.be.checked");
 });
+
+// Cypress.Commands.add("uploadFile", () => {
+//   cy.get("input[type='file']")
+//     .should("not.have.value")
+//     .selectFile("cypress/fixtures/example.json")
+//     .should(($input) => {
+//       expect(input[0].files[0].name.to.equal("example.json"));
+//     });
+// });

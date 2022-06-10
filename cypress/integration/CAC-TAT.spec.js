@@ -58,16 +58,16 @@ describe("Central de Atendimento ao Cliente TAT", function () {
       .should("have.value", "");
     cy.get("#lastName")
       .type("Maria da Silva", { delay: 0 })
-      .should("have.value", "Maria da Silva");
+      .should("have.value", "Maria da Silva", { delay: 0 });
     cy.get("#lastName").clear().should("have.value", "");
     cy.get("#email")
-      .type("ana@exemplo.com")
+      .type("ana@exemplo.com", { delay: 0 })
       .should("have.value", "ana@exemplo.com")
       .clear()
       .should("have.value", "");
     cy.get("#phone-checkbox").click();
     cy.get("#phone")
-      .type("3131313131")
+      .type("3131313131", { delay: 0 })
       .should("have.value", "3131313131")
       .clear()
       .should("have.value", "");
@@ -120,5 +120,32 @@ describe("Central de Atendimento ao Cliente TAT", function () {
 
   it("marca ambos checkboxes, depois desmarca o último", () => {
     cy.checkBothCheckboxesThenUncheckTheLastOne();
+  });
+
+  it("seleciona um arquivo da pasta fixtures", () => {
+    cy.get("input[type='file']")
+      .should("not.have.value")
+      .selectFile("./cypress/fixtures/example.json")
+      .should(($input) => {
+        expect($input[0].files[0].name).to.equal("example.json");
+      });
+  });
+
+  it("seleciona um arquivo simulando um drag-and-drop", function () {
+    cy.get("input[type='file']")
+      .should("not.have.value")
+      .selectFile("./cypress/fixtures/example.json")
+      .should(($input) => {
+        expect($input[0].files[0].name).to.equal("example.json");
+      });
+  });
+
+  it("seleciona um arquivo utilizando uma fixture para a qual foi dada um alias", () => {
+    cy.fixture("example.json").as("sampleFile");
+    cy.get("input[type='file']")
+      .selectFile("@sampleFile")
+      .should(($input) => {
+        expect($input[0].files[0].name).to.equal("example.json");
+      });
   });
 });
