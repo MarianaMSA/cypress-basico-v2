@@ -163,5 +163,6 @@ describe("Central de Atendimento ao Cliente TAT", function () {
       "Central de Atendimento ao Cliente TAT - Política de privacidade"
     );
     cy.contains("HTML, CSS e JavaScript").should("be.visible");
+    cy.viewport("iphone-5");
   });
 });
